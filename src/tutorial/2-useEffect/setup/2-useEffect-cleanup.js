@@ -10,8 +10,13 @@ const UseEffectCleanup = () => {
     setSize(window.innerWidth);
   };
   useEffect(() => {
+    console.log("hello world");
     window.addEventListener("resize", checkSize);
-  }, []);
+    return () => {
+      console.log("cleanup");
+      window.removeEventListener("resize", checkSize);
+    };
+  });
   return (
     <>
       <h2>Screen Size</h2>
